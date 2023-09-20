@@ -50,6 +50,8 @@ spec:
               cleanup:
                 enum:
                 - post
+                - whenOk
+                - whenFailed
                 type: string
               initializer:
                 properties:

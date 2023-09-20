@@ -114,7 +114,7 @@ type K6Configmap struct {
 //TODO: cleanup pre-execution?
 
 // Cleanup allows for automatic cleanup of resources post execution
-// +kubebuilder:validation:Enum=post
+// +kubebuilder:validation:Enum=post;whenOk;whenFailed
 type Cleanup string
 
 // Stage describes which stage of the test execution lifecycle our runners are in

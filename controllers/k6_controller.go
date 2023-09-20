@@ -261,7 +261,10 @@ func (r *K6Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Re
 
 	case "error", "finished":
 		// delete if configured
-		if k6.Spec.Cleanup == "post" {
+		if (k6.Spec.Cleanup == "post") ||
+			(k6.Status.Stage == "error" && k6.Spec.Cleanup == "whenFailed") ||
+			(k6.Status.Stage == "finished" && k6.Spec.Cleanup == "whenOk") {
+
 			log.Info("Cleaning up all resources")
 			r.Delete(ctx, k6)
 		}
