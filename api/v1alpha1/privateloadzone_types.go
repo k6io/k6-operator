@@ -32,12 +32,16 @@ import (
 
 // PrivateLoadZoneSpec defines the desired state of PrivateLoadZone
 type PrivateLoadZoneSpec struct {
-	Token              string                        `json:"token"`
-	Resources          corev1.ResourceRequirements   `json:"resources"`
-	ServiceAccountName string                        `json:"serviceAccountName,omitempty"`
-	NodeSelector       map[string]string             `json:"nodeSelector,omitempty"`
-	Image              string                        `json:"image,omitempty"`
-	ImagePullSecrets   []corev1.LocalObjectReference `json:"imagePullSecrets,omitempty"`
+	// Grafana Cloud k6 token
+	// +kubebuilder:validation:Type=string
+	Token string `json:"token"`
+
+	Resources          corev1.ResourceRequirements `json:"resources"`
+	ServiceAccountName string                      `json:"serviceAccountName,omitempty"`
+	NodeSelector       map[string]string           `json:"nodeSelector,omitempty"`
+	// +kubebuilder:default="grafana/k6:latest"
+	Image            string                        `json:"image,omitempty"`
+	ImagePullSecrets []corev1.LocalObjectReference `json:"imagePullSecrets,omitempty"`
 }
 
 // PrivateLoadZoneStatus defines the observed state of PrivateLoadZone
@@ -46,6 +50,7 @@ type PrivateLoadZoneStatus struct {
 }
 
 //+kubebuilder:object:root=true
+//+kubebuilder:object:generate=true
 //+kubebuilder:subresource:status
 
 // PrivateLoadZone is the Schema for the privateloadzones API
