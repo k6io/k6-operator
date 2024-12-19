@@ -26,3 +26,5 @@ bin
 kubebuilder-tools-*
 
 .vscode
+
+testbin

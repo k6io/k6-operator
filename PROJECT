@@ -4,20 +4,15 @@
 # More info: https://book.kubebuilder.io/reference/project-config.html
 domain: io
 layout:
-- go.kubebuilder.io/v2
+- go.kubebuilder.io/v3
 plugins:
-  go.sdk.operatorframework.io/v2-alpha: {}
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
 projectName: k6-operator
 repo: github.com/grafana/k6-operator
 resources:
-- controller: true
-  domain: io
-  group: k6
-  kind: K6
-  path: github.com/grafana/k6-operator/api/v1alpha1
-  version: v1alpha1
 - api:
-    crdVersion: v1beta1
+    crdVersion: v1
     namespaced: true
   controller: true
   domain: io
@@ -26,7 +21,7 @@ resources:
   path: github.com/grafana/k6-operator/api/v1alpha1
   version: v1alpha1
 - api:
-    crdVersion: v1beta1
+    crdVersion: v1
     namespaced: true
   controller: true
   domain: io

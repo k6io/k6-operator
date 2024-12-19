@@ -29,7 +29,9 @@ spec:
         - command:
             - /manager
           args:
-            - --enable-leader-election
+            - "--metrics-bind-address=127.0.0.1:8080"
+            - "--leader-elect"
+            - "--health-probe-bind-address=:8081"
           image: controller:latest
           name: manager
           resources:
