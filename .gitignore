@@ -22,6 +22,7 @@ bin
 *~
 
 /manager
+./k6-operator
 
 kubebuilder-tools-*
 
