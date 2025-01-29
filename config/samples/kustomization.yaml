@@ -1,8 +1,13 @@
----
 ## Append samples you want in your CSV to this file as resources ##
 resources:
   - k6_v1alpha1_configmap.yaml
-  - k6_v1alpha1_k6.yaml
   - k6_v1alpha1_privateloadzone.yaml
+  - k6_v1alpha1_testrun_with_initContainers.yaml
+  - k6_v1alpha1_testrun_with_localfile.yaml
+  - k6_v1alpha1_testrun_with_output.yaml
+  - k6_v1alpha1_testrun_with_readOnlyVolumeClaim.yaml
+  - k6_v1alpha1_testrun_with_securitycontext.yaml
+  - k6_v1alpha1_testrun_with_topologyspreadconstraints.yaml
+  - k6_v1alpha1_testrun_with_volumeClaim.yaml
   - k6_v1alpha1_testrun.yaml
 # +kubebuilder:scaffold:manifestskustomizesamples

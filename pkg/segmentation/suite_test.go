@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/grafana/k6-operator/pkg/segmentation"
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )
 
