@@ -1,0 +1,15 @@
+# @schema
+# additionalProperties: true
+# required: false
+# type: object
+# @schema
+# customLabels -- Custom Label to be applied on all resources
+customLabels: {}
+
+# @schema
+# additionalProperties: true
+# required: false
+# type: object
+# @schema
+# customAnnotations -- Custom Annotations to be applied on all resources
+customAnnotations: {}

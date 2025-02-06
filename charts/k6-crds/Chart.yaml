@@ -1,0 +1,20 @@
+apiVersion: v1
+appVersion: "0.0.18"
+description: A Helm chart to install the k6-operator CRDs
+name: k6-crds
+version: 3.10.1
+kubeVersion: ">=1.16.0-0"
+home: https://k6.io
+sources:
+  - https://github.com/grafana/k6-operator
+keywords:
+  - load-testing
+  - smoke-testing
+  - stress-testing
+  - soak-testing
+  - kubernetes
+  - distributed-testing
+maintainers:
+  - name: yorugac
+    email: olha@k6.io
+icon: https://raw.githubusercontent.com/grafana/k6-docs/main/static/images/icon.png
