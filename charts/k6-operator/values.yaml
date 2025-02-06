@@ -127,6 +127,32 @@ prometheus:
 # required: false
 # type: object
 # @schema
+service:
+  # @schema
+  # required: false
+  # type: boolean
+  # @schema
+  # service.enabled -- enables the k6 service (default: false)
+  enabled: false
+  # @schema
+  # additionalProperties: true
+  # required: false
+  # type: object
+  # @schema
+  # service.labels -- service custom labels
+  labels: {}
+  # @schema
+  # additionalProperties: true
+  # required: false
+  # type: object
+  # @schema
+  # service.annotations -- service custom annotations
+  annotations: {}
+
+# @schema
+# required: false
+# type: object
+# @schema
 authProxy:
   # @schema
   # required: false

@@ -7,6 +7,31 @@
       "title": "affinity",
       "type": "object"
     },
+    "service": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "description": "service.enabled -- enables the service",
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "labels": {
+          "additionalProperties": true,
+          "description": "service.labels -- service custom labels",
+          "title": "labels",
+          "type": "object"
+        },
+        "annotations": {
+          "additionalProperties": true,
+          "description": "service.annotations -- service custom annotations",
+          "title": "labels",
+          "type": "object"
+        }
+      },
+      "title": "service",
+      "type": "object"
+    },
     "authProxy": {
       "additionalProperties": false,
       "properties": {
