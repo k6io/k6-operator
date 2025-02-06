@@ -21,7 +21,7 @@ IMG_NAME ?= ghcr.io/grafana/k6-operator
 IMG_TAG ?= latest
 # Default dockerfile to build
 DOCKERFILE ?= "Dockerfile.controller"
-CRD_OPTIONS ?= "crd:maxDescLen=0"
+CRD_OPTIONS ?= "crd" #:maxDescLen=0"
 
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
@@ -149,6 +149,9 @@ bundle: manifests
 .PHONY: bundle-build
 bundle-build:
 	docker build -f bundle.Dockerfile -t $(BUNDLE_IMG) .
+
+generate-crd-docs:
+	docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/fybrik/crdoc:latest --resources /workdir/config/crd/bases --output /workdir/docs/crd-generated.md --template /workdir/docs/crd.tmpl
 
 # ===============================================================
 # This section is only about the HELM deployment of the operator
