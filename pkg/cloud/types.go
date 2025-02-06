@@ -190,13 +190,13 @@ func (e *Events) WithDetail(s string) *Events {
 }
 
 // WithAbort adds abortEvent to errorEvent if it already exists.
-func (e *Events) WithAbort() *Events {
+func (e *Events) WithAbort(o Origin) *Events {
 	if len(*e) == 0 {
 		return e
 	}
 
 	if (*e)[0].EventType == errorEvent {
-		*e = append(*e, AbortEvent(OriginUser))
+		*e = append(*e, AbortEvent(o))
 	}
 	return e
 }

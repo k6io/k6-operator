@@ -56,7 +56,7 @@ func FinishJobs(ctx context.Context, log logr.Logger, k6 *v1alpha1.TestRun, r *T
 	if v1alpha1.IsTrue(k6, v1alpha1.CloudTestRun) && failed > 0 {
 		events := cloud.ErrorEvent(cloud.K6OperatorRunnerError).
 			WithDetail(msg).
-			WithAbort()
+			WithAbort(cloud.OriginK6)
 		cloud.SendTestRunEvents(r.k6CloudClient, k6.TestRunID(), log, events)
 	}
 

@@ -152,7 +152,7 @@ func (r *TestRunReconciler) reconcile(ctx context.Context, req ctrl.Request, log
 					if isCloudTestRun(k6) {
 						events := cloud.ErrorEvent(cloud.K6OperatorStartError).
 							WithDetail(msg).
-							WithAbort()
+							WithAbort(cloud.OriginK6)
 						cloud.SendTestRunEvents(r.k6CloudClient, k6.TestRunID(), log, events)
 					}
 				}

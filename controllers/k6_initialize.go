@@ -60,7 +60,7 @@ func RunValidations(ctx context.Context, log logr.Logger, k6 *v1alpha1.TestRun, 
 			// This error won't allow to start a test so let k6 Cloud know of it
 			events := cloud.ErrorEvent(cloud.K6OperatorStartError).
 				WithDetail(fmt.Sprintf("Failed to inspect the test script: %v", err)).
-				WithAbort()
+				WithAbort(cloud.OriginK6)
 			cloud.SendTestRunEvents(r.k6CloudClient, k6.TestRunID(), log, events)
 		} else {
 			// if there is any error, we have to reflect it on the K6 manifest
