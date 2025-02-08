@@ -73,6 +73,9 @@ func NewRunnerJob(k6 *v1alpha1.TestRun, index int, token string) (*batchv1.Job, 
 	// Add an job tag: in case metrics are stored, they need to be distinguished by job
 	command = append(command, "--tag", fmt.Sprintf("job_name=%s", name))
 
+	// Add a base job tag, in order to encompass all metrics from all instances of the parent job
+	command = append(command, "--tag", fmt.Sprintf("base_job_name=%s", k6.NamespacedName().Name))
+
 	if v1alpha1.IsTrue(k6, v1alpha1.CloudPLZTestRun) {
 		command = append(command, "--no-setup", "--no-teardown", "--linger")
 	}
