@@ -336,6 +336,8 @@ func TestNewRunnerJob(t *testing.T) {
 							},
 						},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -345,6 +347,7 @@ func TestNewRunnerJob(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -460,6 +463,8 @@ func TestNewRunnerJobNoisy(t *testing.T) {
 						VolumeMounts:    script.VolumeMount(),
 						Ports:           []corev1.ContainerPort{{ContainerPort: 6565}},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -469,6 +474,7 @@ func TestNewRunnerJobNoisy(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -575,6 +581,8 @@ func TestNewRunnerJobUnpaused(t *testing.T) {
 						VolumeMounts:    script.VolumeMount(),
 						Ports:           []corev1.ContainerPort{{ContainerPort: 6565}},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -584,6 +592,7 @@ func TestNewRunnerJobUnpaused(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -690,6 +699,8 @@ func TestNewRunnerJobArguments(t *testing.T) {
 						VolumeMounts:    script.VolumeMount(),
 						Ports:           []corev1.ContainerPort{{ContainerPort: 6565}},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -699,6 +710,7 @@ func TestNewRunnerJobArguments(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -806,6 +818,8 @@ func TestNewRunnerJobServiceAccount(t *testing.T) {
 						VolumeMounts:    script.VolumeMount(),
 						Ports:           []corev1.ContainerPort{{ContainerPort: 6565}},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -815,6 +829,7 @@ func TestNewRunnerJobServiceAccount(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -936,6 +951,8 @@ func TestNewRunnerJobIstio(t *testing.T) {
 						VolumeMounts: script.VolumeMount(),
 						Ports:        []corev1.ContainerPort{{ContainerPort: 6565}},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -945,6 +962,7 @@ func TestNewRunnerJobIstio(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1061,6 +1079,8 @@ func TestNewRunnerJobCloud(t *testing.T) {
 						VolumeMounts: script.VolumeMount(),
 						Ports:        []corev1.ContainerPort{{ContainerPort: 6565}},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1070,6 +1090,7 @@ func TestNewRunnerJobCloud(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1178,6 +1199,8 @@ func TestNewRunnerJobLocalFile(t *testing.T) {
 						VolumeMounts:    script.VolumeMount(),
 						Ports:           []corev1.ContainerPort{{ContainerPort: 6565}},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1187,6 +1210,7 @@ func TestNewRunnerJobLocalFile(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1320,6 +1344,8 @@ func TestNewRunnerJobWithInitContainer(t *testing.T) {
 							},
 						},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1329,6 +1355,7 @@ func TestNewRunnerJobWithInitContainer(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1499,6 +1526,8 @@ func TestNewRunnerJobWithVolume(t *testing.T) {
 							},
 						},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1508,6 +1537,7 @@ func TestNewRunnerJobWithVolume(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1669,6 +1699,8 @@ func TestNewRunnerJobPLZTestRun(t *testing.T) {
 							},
 						},
 						LivenessProbe: &corev1.Probe{
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",
@@ -1678,6 +1710,7 @@ func TestNewRunnerJobPLZTestRun(t *testing.T) {
 							},
 						},
 						ReadinessProbe: &corev1.Probe{
+							TimeoutSeconds: 3,
 							ProbeHandler: corev1.ProbeHandler{
 								HTTPGet: &corev1.HTTPGetAction{
 									Path:   "/v1/status",

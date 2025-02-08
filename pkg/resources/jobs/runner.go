@@ -185,8 +185,8 @@ func NewRunnerJob(k6 *v1alpha1.TestRun, index int, token string) (*batchv1.Job, 
 						VolumeMounts:    volumeMounts,
 						Ports:           ports,
 						EnvFrom:         k6.GetSpec().Runner.EnvFrom,
-						LivenessProbe:   generateProbe(k6.GetSpec().Runner.LivenessProbe),
-						ReadinessProbe:  generateProbe(k6.GetSpec().Runner.ReadinessProbe),
+						LivenessProbe:   generateLivenessProbe(k6.GetSpec().Runner.LivenessProbe),
+						ReadinessProbe:  generateReadinessProbe(k6.GetSpec().Runner.ReadinessProbe),
 						SecurityContext: &k6.GetSpec().Runner.ContainerSecurityContext,
 					}},
 					TerminationGracePeriodSeconds: &zero,
@@ -276,11 +276,29 @@ func newAntiAffinity() *corev1.Affinity {
 	}
 }
 
-func generateProbe(configuredProbe *corev1.Probe) *corev1.Probe {
+func generateLivenessProbe(configuredProbe *corev1.Probe) *corev1.Probe {
 	if configuredProbe != nil {
 		return configuredProbe
 	}
 	return &corev1.Probe{
+		InitialDelaySeconds: 10,
+		TimeoutSeconds:      3,
+		ProbeHandler: corev1.ProbeHandler{
+			HTTPGet: &corev1.HTTPGetAction{
+				Path:   "/v1/status",
+				Port:   intstr.IntOrString{IntVal: 6565},
+				Scheme: "HTTP",
+			},
+		},
+	}
+}
+
+func generateReadinessProbe(configuredProbe *corev1.Probe) *corev1.Probe {
+	if configuredProbe != nil {
+		return configuredProbe
+	}
+	return &corev1.Probe{
+		TimeoutSeconds: 3,
 		ProbeHandler: corev1.ProbeHandler{
 			HTTPGet: &corev1.HTTPGetAction{
 				Path:   "/v1/status",
