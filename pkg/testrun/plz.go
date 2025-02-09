@@ -51,6 +51,7 @@ func NewPLZTestRun(plz *v1alpha1.PrivateLoadZone, token string, trData *cloud.Te
 				ServiceAccountName: plz.Spec.ServiceAccountName,
 				NodeSelector:       plz.Spec.NodeSelector,
 				Resources:          plz.Spec.Resources,
+				Tolerations:        plz.Spec.Tolerations,
 				Volumes: []corev1.Volume{
 					volume,
 				},
@@ -66,6 +67,7 @@ func NewPLZTestRun(plz *v1alpha1.PrivateLoadZone, token string, trData *cloud.Te
 				ServiceAccountName: plz.Spec.ServiceAccountName,
 				NodeSelector:       plz.Spec.NodeSelector,
 				ImagePullSecrets:   plz.Spec.ImagePullSecrets,
+				Tolerations:        plz.Spec.Tolerations,
 			},
 			Script: v1alpha1.K6Script{
 				LocalFile: "/test/archive.tar",

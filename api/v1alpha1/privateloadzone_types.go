@@ -34,6 +34,7 @@ import (
 type PrivateLoadZoneSpec struct {
 	Token              string                        `json:"token"`
 	Resources          corev1.ResourceRequirements   `json:"resources"`
+	Tolerations        []corev1.Toleration           `json:"tolerations,omitempty"`
 	ServiceAccountName string                        `json:"serviceAccountName,omitempty"`
 	NodeSelector       map[string]string             `json:"nodeSelector,omitempty"`
 	Image              string                        `json:"image,omitempty"`

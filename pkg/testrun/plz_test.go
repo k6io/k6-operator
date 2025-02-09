@@ -70,6 +70,14 @@ func Test_NewPLZTestRun(t *testing.T) {
 			corev1.ResourceCPU:    resource.MustParse("200m"),
 			corev1.ResourceMemory: resource.MustParse("1G"),
 		}
+		tolerations = []corev1.Toleration{
+			{
+				Key:      "someKey",
+				Operator: corev1.TolerationOpEqual,
+				Value:    "someValue",
+				Effect:   corev1.TaintEffectNoSchedule,
+			},
+		}
 		someTestRunID   = 6543
 		someRunnerImage = "grafana/k6:0.52.0"
 		someInstances   = 10
@@ -96,8 +104,10 @@ func Test_NewPLZTestRun(t *testing.T) {
 	optionalFieldsTestRun.Namespace = someNS
 	optionalFieldsTestRun.Spec.Runner.ServiceAccountName = someSA
 	optionalFieldsTestRun.Spec.Runner.NodeSelector = someNodeSelector
+	optionalFieldsTestRun.Spec.Runner.Tolerations = tolerations
 	optionalFieldsTestRun.Spec.Starter.ServiceAccountName = someSA
 	optionalFieldsTestRun.Spec.Starter.NodeSelector = someNodeSelector
+	optionalFieldsTestRun.Spec.Starter.Tolerations = tolerations
 
 	cloudFieldsTestRun = requiredFieldsTestRun // build up on top of required field case
 	cloudFieldsTestRun.ObjectMeta.Name = TestName(fmt.Sprintf("%d", someTestRunID))
@@ -171,6 +181,7 @@ func Test_NewPLZTestRun(t *testing.T) {
 					Resources: corev1.ResourceRequirements{
 						Limits: resourceLimits,
 					},
+					Tolerations:        tolerations,
 					ServiceAccountName: someSA,
 					NodeSelector:       someNodeSelector,
 				},
